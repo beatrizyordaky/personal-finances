@@ -12,6 +12,8 @@ function updateExpenses(forms_response) {
 
   let old_value = range.getValue();
   range.setValue(old_value + value);
+
+  checkStatus(); // check if the budget has been exceeded
 }
 
 
