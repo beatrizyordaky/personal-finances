@@ -13,7 +13,8 @@ function updateExpenses(forms_response) {
   let old_value = range.getValue();
   range.setValue(old_value + value);
 
-  checkStatus(); // check if the budget has been exceeded
+  checkTotalBudget();                 // check if the total budget has been exceeded
+  checkBudgetByExpense(expense_type); // check if the budget for the type of expense has been exceeded
 }
 
 
