@@ -1,14 +1,3 @@
-function insertFormData() {
-  let ss = SpreadsheetApp.getActiveSpreadsheet();
-  let target_sheet = ss.getSheetByName("Form - Formatted");
-
-  let forms_response = getFormNewResponse();
-
-  target_sheet.appendRow(forms_response);
-  updateExpenses(forms_response);
-}
-
-
 function getFormNewResponse() {
   let ss = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = ss.getSheetByName("Form");
@@ -29,6 +18,17 @@ function formatFormResponse(forms_response) {
   formatted_data[1] = parseFloat(formatted_data[1]);
 
   return formatted_data
+}
+
+
+function insertFormData() {
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  let target_sheet = ss.getSheetByName("Form - Formatted");
+
+  let forms_response = getFormNewResponse();
+
+  target_sheet.appendRow(forms_response);
+  updateExpenses(forms_response);
 }
 
 
