@@ -3,7 +3,7 @@ function updateExpenses(forms_response) {
   let value = forms_response[1];
   let expense_type = forms_response[2];
 
-  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Expenses");
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("all_expenses");
   let range = sheet.getRange(getRowNumber(expense_type, sheet), getColNumber(date, sheet));
 
   if (expense_type === "Automatic Payments") {
@@ -13,18 +13,10 @@ function updateExpenses(forms_response) {
   let old_value = range.getValue();
   range.setValue(old_value + value);
 
-  checkTotalBudget();                 // check if the total budget has been exceeded
-  checkBudgetByExpense(expense_type); // check if the budget for the type of expense has been exceeded
-}
+  let total = sheet.getRange(getRowNumber("Total", sheet), getColNumber(date, sheet)).getValue();
 
-
-function getColNumber(name, sheet) {
-  let col_names = sheet.getSheetValues(1, 1, 1, sheet.getLastColumn()).flat();
-  return col_names.indexOf(name) + 1;
-}
-
-
-function getRowNumber(name, sheet) {
-  let row_names = sheet.getSheetValues(1, 1, sheet.getLastRow(), 1).flat();
-  return row_names.indexOf(name) + 1;
+  sendEmail(
+    "Expenses update",
+    "You already spent R$" + total + " this month. To see in detail, check the link https://docs.google.com/spreadsheets/d/1zg18l-1faPuiMffPAREtw8hvNiNAAEijXpXlkNS0iNE/edit?usp=sharing"
+  )
 }
