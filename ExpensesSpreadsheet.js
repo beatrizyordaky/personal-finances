@@ -17,6 +17,6 @@ function updateExpenses(forms_response) {
 
   sendEmail(
     "Expenses update",
-    "You already spent R$" + total + " this month. To see in detail, check the link https://docs.google.com/spreadsheets/d/1zg18l-1faPuiMffPAREtw8hvNiNAAEijXpXlkNS0iNE/edit?usp=sharing"
+    "You already spent R$" + Math.round(total) + " this month. To see in detail, check the link https://docs.google.com/spreadsheets/d/1zg18l-1faPuiMffPAREtw8hvNiNAAEijXpXlkNS0iNE/edit?usp=sharing"
   )
 }
