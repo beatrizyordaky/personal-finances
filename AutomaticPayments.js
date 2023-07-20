@@ -8,7 +8,7 @@ function insertAutomaticPaymentData() {
 
   let date = Utilities.formatDate(new Date(), 'GMT-3', 'MM/yy');
 
-  let data = [date, total_amount, "automatic_payments"];
+  let data = [date, total_amount, "Automatic Payments"];
   
   target_sheet.appendRow(data);
   updateExpenses(data);
